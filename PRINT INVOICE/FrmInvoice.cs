@@ -305,11 +305,22 @@ namespace PRINT_INVOICE
 
         public bool isDataValid()
         {
-            int errur = 0;
-            if (string.IsNullOrEmpty(txtNum.Text)) errur++;
-            if (cmbCustomer.SelectedIndex <= -1) errur++;
-            if (DGVInvoice.RowCount == 0) errur++;
-            return errur == 0;
+            int error = 0;
+            string msg = "";
+            if (string.IsNullOrEmpty(txtNum.Text)) error++;
+            if (cmbCustomer.SelectedIndex == -1)
+            {
+                msg += "اختر طرف التعامل اولا\n";
+                error++;
+            };
+            if (DGVInvoice.RowCount == 0)
+            {
+                msg += "لايمكن حفظ فاتورة فارغة\n";
+                error++;
+            }
+            if (msg != "")
+                MessageBox.Show(msg, "خطأ");
+            return error == 0;
         }
 
         void getData(int id)
