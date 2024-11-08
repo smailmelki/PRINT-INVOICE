@@ -44,7 +44,7 @@
             this.dgvCustAndVend.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCustAndVend.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvCustAndVend.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCustAndVend.Location = new System.Drawing.Point(29, 59);
+            this.dgvCustAndVend.Location = new System.Drawing.Point(64, 86);
             this.dgvCustAndVend.Name = "dgvCustAndVend";
             this.dgvCustAndVend.ReadOnly = true;
             this.dgvCustAndVend.RowHeadersVisible = false;
@@ -58,7 +58,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(64, 472);
+            this.btnAdd.Location = new System.Drawing.Point(89, 499);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(97, 48);
             this.btnAdd.TabIndex = 1;
@@ -68,7 +68,7 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(188, 472);
+            this.btnEdit.Location = new System.Drawing.Point(213, 499);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(97, 48);
             this.btnEdit.TabIndex = 1;
@@ -78,7 +78,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(313, 472);
+            this.btnDelete.Location = new System.Drawing.Point(325, 499);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(97, 48);
             this.btnDelete.TabIndex = 1;
@@ -89,7 +89,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 15);
+            this.label1.Location = new System.Drawing.Point(60, 42);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 29);
             this.label1.TabIndex = 5;
@@ -97,9 +97,9 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(80, 12);
+            this.textBox1.Location = new System.Drawing.Point(124, 39);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(330, 36);
+            this.textBox1.Size = new System.Drawing.Size(280, 36);
             this.textBox1.TabIndex = 4;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -107,7 +107,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(428, 532);
+            this.ClientSize = new System.Drawing.Size(501, 591);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnDelete);

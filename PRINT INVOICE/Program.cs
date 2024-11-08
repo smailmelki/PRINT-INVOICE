@@ -13,7 +13,8 @@ namespace PRINT_INVOICE
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new main());
+            new frmLogIn().Show();
+            Application.Run();
         }
     }
 }

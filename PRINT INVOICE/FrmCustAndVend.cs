@@ -12,9 +12,10 @@ namespace PRINT_INVOICE
         DAL.CustAndVend CustAndVend;
         PartType type;
         int ID;
-        public FrmCustAndVend(PartType Type)
+        public FrmCustAndVend(PartType Type, Form frm)
         {
             InitializeComponent();
+            this.Owner = frm;
             this.type = Type;
             FillDGV();
         }
@@ -31,6 +32,12 @@ namespace PRINT_INVOICE
         private void FrmCustAndVend_Load(object sender, EventArgs e)
         {
             dgvCustAndVend.ClearSelection();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(textBox1.Text))
+                dgvCustAndVend.DataSource = Util.CustAndVends.Where(t => t.PartType == type && t.Name.Contains(textBox1.Text)).ToList();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -88,16 +95,11 @@ namespace PRINT_INVOICE
                 ID = (int)dgvCustAndVend.CurrentRow.Cells[0].Value;
                 if (Application.OpenForms[nameof(FrmInvoice)] != null) 
                 {
-                    ((FrmInvoice)Application.OpenForms[nameof(FrmInvoice)]).CustomerID = ID;
+                    //((FrmInvoice)Application.OpenForms[nameof(FrmInvoice)]).CustomerID = ID;
+                    Util.CustomerId = ID;
                     this.Close();
                 }
             }
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(textBox1.Text))
-                dgvCustAndVend.DataSource = Util.CustAndVends.Where(t => t.PartType == type && t.Name.Contains(textBox1.Text)).ToList();
         }
 
         private void dgvCustAndVend_SelectionChanged(object sender, EventArgs e)
@@ -106,6 +108,16 @@ namespace PRINT_INVOICE
             {
                 CustAndVend = dgvCustAndVend.SelectedRows[0].DataBoundItem as CustAndVend;
             }            
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

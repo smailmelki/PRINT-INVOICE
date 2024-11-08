@@ -11,6 +11,8 @@ namespace PRINT_INVOICE
         public main()
         {
             InitializeComponent();
+            lblUserName.Text = Util.UserName;
+            this.Cursor = Cursors.Default;
         }
 
         private void main_Load(object sender, EventArgs e)
@@ -19,40 +21,77 @@ namespace PRINT_INVOICE
             Util.CustAndVends = db.CustAndVends.ToList();
         }
 
+        void OpenFormes(Form frm)
+        {
+            pnlContainer.Controls.Clear();
+            frm.TopLevel = false;
+            frm.FormBorderStyle = FormBorderStyle.None;
+            frm.Dock = DockStyle.Fill;
+            frm.Show();
+            pnlContainer.Controls.Add(frm);
+        }
         private void btnItem_Click(object sender, EventArgs e)
         {
             FrmProductList frm = new FrmProductList();
-            frm.Show();
+            OpenFormes(frm);
         }
 
         private void btnSales_Click(object sender, EventArgs e)
         {
             FrmInvoice frm = new FrmInvoice(InvoiceType.Sales);
-            frm.Show();
+            OpenFormes(frm);
         }
 
         private void btnBuy_Click(object sender, EventArgs e)
         {
             FrmInvoice frm = new FrmInvoice(InvoiceType.purchase);
-            frm.Show();
+            OpenFormes(frm);
         }
+
 
         private void btnCustomer_Click(object sender, EventArgs e)
         {
-            FrmCustAndVend frm = new FrmCustAndVend(PartType.Customer);
-            frm.Show();
+            if (Application.OpenForms[nameof(FrmCustAndVend)] == null)
+            {
+                FrmCustAndVend frm = new FrmCustAndVend(PartType.Customer, this);
+                frm.Show();
+            }
         }
 
         private void btnbtnVendor_Click(object sender, EventArgs e)
         {
-            FrmCustAndVend frm = new FrmCustAndVend(PartType.Vendor);
-            frm.Show();
+            if (Application.OpenForms[nameof(FrmCustAndVend)] == null)
+            {
+                FrmCustAndVend frm = new FrmCustAndVend(PartType.Vendor, this);
+                frm.Show();
+            }
         }
 
         private void btnbelList_Click(object sender, EventArgs e)
         {
             FrmFactList frm = new FrmFactList();
-            frm.Show();
+            OpenFormes(frm);
+        }
+
+        private void btnCollebs_Click(object sender, EventArgs e)
+        {
+            if (PnlMainIcon.Width > 200)
+            {
+                PnlMainIcon.Width = 80;
+                lblUserName.Visible= false;
+                LogoPictor.Visible = false;
+            }
+            else
+            {
+                PnlMainIcon.Width = 230;
+                lblUserName.Visible = true;
+                LogoPictor.Visible = true;
+            }
+        }
+
+        private void main_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -65,6 +65,7 @@
     <Compile Include="DAL\Invoice_Det.cs" />
     <Compile Include="DAL\Invoice_Header.cs" />
     <Compile Include="DAL\products.cs" />
+    <Compile Include="DAL\User.cs" />
     <Compile Include="FrmAddCustOrVend.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +89,12 @@
     </Compile>
     <Compile Include="FrmInvoice.Designer.cs">
       <DependentUpon>FrmInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogIn.Designer.cs">
+      <DependentUpon>frmLogIn.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmProduct.cs">
       <SubType>Form</SubType>
@@ -121,6 +128,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmInvoice.resx">
       <DependentUpon>FrmInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogIn.resx">
+      <DependentUpon>frmLogIn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmProduct.resx">
       <DependentUpon>FrmProduct.cs</DependentUpon>
@@ -157,6 +167,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\productIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clientIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\supplire.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\invoice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\invoicesListIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\inviceIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\collabseIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\entreIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\closeIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loginIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

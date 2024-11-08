@@ -13,7 +13,6 @@ namespace PRINT_INVOICE
 {
     public partial class FrmInvoice: Form
     {
-        public int CustomerID;
         DBContext db = new DBContext();
         products product;
         Invoice_Header header;
@@ -568,12 +567,12 @@ namespace PRINT_INVOICE
         {
             try
             {
-                FrmCustAndVend frm = new FrmCustAndVend(type == InvoiceType.Sales ? PartType.Customer : PartType.Vendor);
+                FrmCustAndVend frm = new FrmCustAndVend(type == InvoiceType.Sales ? PartType.Customer : PartType.Vendor,this);
                 frm.ShowDialog();
                 cmbCustomer.DataSource = Util.CustAndVends.Where(p => p.PartType == partType).Select(x => new { x.ID, x.Name }).ToList();
                 cmbCustomer.ValueMember = "ID";
                 cmbCustomer.DisplayMember = "Name";
-                cmbCustomer.SelectedValue = CustomerID;
+                cmbCustomer.SelectedValue = Util.CustomerId;
             }
             catch (Exception)
             {

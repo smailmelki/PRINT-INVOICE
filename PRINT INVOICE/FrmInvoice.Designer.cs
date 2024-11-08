@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmInvoice));
             this.btnAdd = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -97,7 +97,7 @@
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Location = new System.Drawing.Point(78, 15);
+            this.btnAdd.Location = new System.Drawing.Point(98, 15);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(5);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(74, 35);
@@ -154,9 +154,9 @@
             // 
             // btnCustAdd
             // 
-            this.btnCustAdd.Location = new System.Drawing.Point(9, 80);
+            this.btnCustAdd.Location = new System.Drawing.Point(12, 83);
             this.btnCustAdd.Name = "btnCustAdd";
-            this.btnCustAdd.Size = new System.Drawing.Size(64, 37);
+            this.btnCustAdd.Size = new System.Drawing.Size(64, 32);
             this.btnCustAdd.TabIndex = 4;
             this.btnCustAdd.Text = "Add";
             this.btnCustAdd.UseVisualStyleBackColor = true;
@@ -215,7 +215,7 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(709, 19);
+            this.label4.Location = new System.Drawing.Point(684, 19);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 9, 5, 5);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(83, 27);
@@ -228,10 +228,10 @@
             this.cmbItem.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmbItem.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbItem.FormattingEnabled = true;
-            this.cmbItem.Location = new System.Drawing.Point(524, 17);
+            this.cmbItem.Location = new System.Drawing.Point(518, 17);
             this.cmbItem.Margin = new System.Windows.Forms.Padding(5, 7, 5, 5);
             this.cmbItem.Name = "cmbItem";
-            this.cmbItem.Size = new System.Drawing.Size(175, 35);
+            this.cmbItem.Size = new System.Drawing.Size(156, 35);
             this.cmbItem.TabIndex = 2;
             this.cmbItem.SelectedIndexChanged += new System.EventHandler(this.cmbItem_SelectedIndexChanged);
             this.cmbItem.Enter += new System.EventHandler(this.cmbItem_SelectedIndexChanged);
@@ -241,7 +241,7 @@
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(433, 19);
+            this.label5.Location = new System.Drawing.Point(427, 19);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 9, 5, 5);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(81, 27);
@@ -251,10 +251,10 @@
             // txtPrice
             // 
             this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPrice.Location = new System.Drawing.Point(322, 17);
+            this.txtPrice.Location = new System.Drawing.Point(342, 17);
             this.txtPrice.Margin = new System.Windows.Forms.Padding(5, 7, 5, 5);
             this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(101, 34);
+            this.txtPrice.Size = new System.Drawing.Size(75, 34);
             this.txtPrice.TabIndex = 3;
             this.txtPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -262,7 +262,7 @@
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(228, 19);
+            this.label6.Location = new System.Drawing.Point(248, 19);
             this.label6.Margin = new System.Windows.Forms.Padding(5, 9, 5, 5);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(84, 27);
@@ -272,7 +272,7 @@
             // txtQty
             // 
             this.txtQty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtQty.Location = new System.Drawing.Point(162, 17);
+            this.txtQty.Location = new System.Drawing.Point(182, 17);
             this.txtQty.Margin = new System.Windows.Forms.Padding(5, 7, 5, 5);
             this.txtQty.Name = "txtQty";
             this.txtQty.Size = new System.Drawing.Size(56, 34);
@@ -303,7 +303,7 @@
             this.DGVInvoice.Name = "DGVInvoice";
             this.DGVInvoice.RowHeadersVisible = false;
             this.DGVInvoice.RowHeadersWidth = 51;
-            this.DGVInvoice.Size = new System.Drawing.Size(1051, 319);
+            this.DGVInvoice.Size = new System.Drawing.Size(998, 319);
             this.DGVInvoice.TabIndex = 9;
             this.DGVInvoice.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.DGVInvoice_CellBeginEdit);
             this.DGVInvoice.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVInvoice_CellContentClick);
@@ -328,8 +328,8 @@
             // 
             // colPrice
             // 
-            dataGridViewCellStyle2.NullValue = "0.00";
-            this.colPrice.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.NullValue = "0.00";
+            this.colPrice.DefaultCellStyle = dataGridViewCellStyle6;
             this.colPrice.HeaderText = "سعر الوحدة";
             this.colPrice.MaxInputLength = 140;
             this.colPrice.MinimumWidth = 60;
@@ -570,7 +570,7 @@
             this.lblInvoiceTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblInvoiceTitle.BackColor = System.Drawing.Color.Silver;
             this.lblInvoiceTitle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInvoiceTitle.Location = new System.Drawing.Point(385, 34);
+            this.lblInvoiceTitle.Location = new System.Drawing.Point(524, 34);
             this.lblInvoiceTitle.Name = "lblInvoiceTitle";
             this.lblInvoiceTitle.Size = new System.Drawing.Size(268, 89);
             this.lblInvoiceTitle.TabIndex = 1;
@@ -581,7 +581,7 @@
             // 
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(905, 19);
+            this.label14.Location = new System.Drawing.Point(852, 19);
             this.label14.Margin = new System.Windows.Forms.Padding(5, 9, 5, 5);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(121, 27);
@@ -592,10 +592,10 @@
             // 
             this.txtCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCode.Enabled = false;
-            this.txtCode.Location = new System.Drawing.Point(802, 17);
+            this.txtCode.Location = new System.Drawing.Point(777, 17);
             this.txtCode.Margin = new System.Windows.Forms.Padding(5, 7, 5, 5);
             this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(93, 34);
+            this.txtCode.Size = new System.Drawing.Size(65, 34);
             this.txtCode.TabIndex = 1;
             this.txtCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCode_KeyDown);
@@ -678,7 +678,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(342, 5);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1063, 613);
+            this.panel4.Size = new System.Drawing.Size(1010, 613);
             this.panel4.TabIndex = 13;
             // 
             // pictureBox1
@@ -707,7 +707,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 212);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(10);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1051, 62);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(998, 62);
             this.flowLayoutPanel1.TabIndex = 10;
             // 
             // printPreviewDialog1
@@ -730,7 +730,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1410, 623);
+            this.ClientSize = new System.Drawing.Size(1357, 623);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
