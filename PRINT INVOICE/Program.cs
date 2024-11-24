@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace PRINT_INVOICE
@@ -13,7 +14,16 @@ namespace PRINT_INVOICE
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            new frmLogIn().Show();
+
+            var frm = new frmLogIn();
+            frm.Show();
+            if (Debugger.IsAttached)
+            {
+                frm.txtUsername.Text = "Admin";
+                frm.txtPassword.Text = "Admin";
+                frm.btnLogIn_Click(null, null);
+            }
+
             Application.Run();
         }
     }

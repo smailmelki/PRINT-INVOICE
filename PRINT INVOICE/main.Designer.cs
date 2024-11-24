@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.PnlMainIcon = new System.Windows.Forms.FlowLayoutPanel();
-            this.pnlContainer = new System.Windows.Forms.Panel();
-            this.lblUserName = new System.Windows.Forms.Label();
             this.btnCollebs = new System.Windows.Forms.Button();
+            this.lblUserName = new System.Windows.Forms.Label();
             this.LogoPictor = new System.Windows.Forms.PictureBox();
             this.btnItem = new System.Windows.Forms.Button();
             this.btnCustomer = new System.Windows.Forms.Button();
@@ -39,6 +39,8 @@
             this.btnBuy = new System.Windows.Forms.Button();
             this.btnSales = new System.Windows.Forms.Button();
             this.btnbelList = new System.Windows.Forms.Button();
+            this.pnlContainer = new System.Windows.Forms.Panel();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.PnlMainIcon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoPictor)).BeginInit();
             this.SuspendLayout();
@@ -63,23 +65,6 @@
             this.PnlMainIcon.Size = new System.Drawing.Size(230, 612);
             this.PnlMainIcon.TabIndex = 3;
             // 
-            // pnlContainer
-            // 
-            this.pnlContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContainer.Location = new System.Drawing.Point(20, 20);
-            this.pnlContainer.Name = "pnlContainer";
-            this.pnlContainer.Size = new System.Drawing.Size(1086, 612);
-            this.pnlContainer.TabIndex = 4;
-            // 
-            // lblUserName
-            // 
-            this.lblUserName.Location = new System.Drawing.Point(21, 5);
-            this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(121, 37);
-            this.lblUserName.TabIndex = 4;
-            this.lblUserName.Text = "UserName";
-            this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // btnCollebs
             // 
             this.btnCollebs.Image = global::PRINT_INVOICE.Properties.Resources.collabseIcon;
@@ -89,6 +74,15 @@
             this.btnCollebs.TabIndex = 5;
             this.btnCollebs.UseVisualStyleBackColor = true;
             this.btnCollebs.Click += new System.EventHandler(this.btnCollebs_Click);
+            // 
+            // lblUserName
+            // 
+            this.lblUserName.Location = new System.Drawing.Point(21, 5);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(121, 37);
+            this.lblUserName.TabIndex = 4;
+            this.lblUserName.Text = "UserName";
+            this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LogoPictor
             // 
@@ -113,6 +107,7 @@
             this.btnItem.TabIndex = 1;
             this.btnItem.Text = "المنتجات";
             this.btnItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.btnItem, "المنتجات");
             this.btnItem.UseVisualStyleBackColor = true;
             this.btnItem.Click += new System.EventHandler(this.btnItem_Click);
             // 
@@ -129,6 +124,7 @@
             this.btnCustomer.TabIndex = 2;
             this.btnCustomer.Text = "العملاء";
             this.btnCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.btnCustomer, "العملاء");
             this.btnCustomer.UseVisualStyleBackColor = true;
             this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
             // 
@@ -145,6 +141,7 @@
             this.btnbtnVendor.TabIndex = 2;
             this.btnbtnVendor.Text = "الموردون";
             this.btnbtnVendor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.btnbtnVendor, "الموردون");
             this.btnbtnVendor.UseVisualStyleBackColor = true;
             this.btnbtnVendor.Click += new System.EventHandler(this.btnbtnVendor_Click);
             // 
@@ -161,6 +158,7 @@
             this.btnBuy.TabIndex = 0;
             this.btnBuy.Text = "فاتورة شراء";
             this.btnBuy.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.btnBuy, "فاتورة شراء");
             this.btnBuy.UseVisualStyleBackColor = true;
             this.btnBuy.Click += new System.EventHandler(this.btnBuy_Click);
             // 
@@ -177,6 +175,7 @@
             this.btnSales.TabIndex = 0;
             this.btnSales.Text = "فاتورة بيع";
             this.btnSales.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.btnSales, "فاتورة بيع");
             this.btnSales.UseVisualStyleBackColor = true;
             this.btnSales.Click += new System.EventHandler(this.btnSales_Click);
             // 
@@ -193,8 +192,17 @@
             this.btnbelList.TabIndex = 2;
             this.btnbelList.Text = "قائمة الفواتير";
             this.btnbelList.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.btnbelList, "قائمة الفواتير");
             this.btnbelList.UseVisualStyleBackColor = true;
             this.btnbelList.Click += new System.EventHandler(this.btnbelList_Click);
+            // 
+            // pnlContainer
+            // 
+            this.pnlContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlContainer.Location = new System.Drawing.Point(20, 20);
+            this.pnlContainer.Name = "pnlContainer";
+            this.pnlContainer.Size = new System.Drawing.Size(1086, 612);
+            this.pnlContainer.TabIndex = 4;
             // 
             // main
             // 
@@ -229,5 +237,6 @@
         private System.Windows.Forms.PictureBox LogoPictor;
         private System.Windows.Forms.Button btnCollebs;
         private System.Windows.Forms.Label lblUserName;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

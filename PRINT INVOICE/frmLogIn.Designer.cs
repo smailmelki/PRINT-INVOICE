@@ -136,13 +136,12 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnLogIn;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.PictureBox pictureBox1;
+        public System.Windows.Forms.TextBox txtUsername;
+        public System.Windows.Forms.TextBox txtPassword;
+        public System.Windows.Forms.Button btnLogIn;
     }
 }

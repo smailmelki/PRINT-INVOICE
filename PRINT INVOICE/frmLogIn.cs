@@ -15,7 +15,7 @@ namespace PRINT_INVOICE
             InitializeComponent();
         }
 
-        private void btnLogIn_Click(object sender, EventArgs e)
+        public void btnLogIn_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtUsername.Text) || string.IsNullOrEmpty(txtPassword.Text))
             {
