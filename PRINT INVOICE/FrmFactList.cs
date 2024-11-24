@@ -49,8 +49,8 @@ namespace PRINT_INVOICE
             DgvFactList.Columns[0].Visible = false;
 
             // تحميل البيانات الأولية للشجرة
-            query = FillDgv();
-            PopulateTreeData(query);
+            FillDgv();
+            PopulateTreeData(query.Where(t => t.Type == (InvoiceType)comboBox1.SelectedItem).ToList());
         }
 
         // ملء الشجرة بالبيانات
@@ -69,35 +69,15 @@ namespace PRINT_INVOICE
         private void AddHeaderNode(dataType node)
         {
             // إنشاء صف جديد
-            int rowIndex = DgvFactList.Rows.Add(node.ID, node.Nu, node.Net, node.Paid, node.Remain, node.Name, node.Type, node.Date, node.Total);
-            DgvFactList.Rows[rowIndex].DefaultCellStyle.BackColor = Color.LightGray;
+            int rowIndex = DgvFactList.Rows.Add(node.ID, node.Nu, node.Net, node.Paid, node.Remain, node.Name, node.Type, node.Date.ToString("dd-MM-yyyy"), node.Total);
+            DgvFactList.Rows[rowIndex].DefaultCellStyle.BackColor = rowIndex % 2 == 1 ? Color.WhiteSmoke : Color.LightGray;
             DgvFactList.Rows[rowIndex].DefaultCellStyle.Font = new Font("Arial", 9, FontStyle.Bold); // تغيير الخط للعقد الرئيسية
             var row = DgvFactList.Rows[rowIndex];
             row.Tag = node; // تخزين بيانات العقدة في الصف
-
-            // إذا كانت العقدة موسعة، أضف العقد الفرعية
-            if (node.IsExpanded)
-            {
-                int index = DgvFactList.Rows.Add("-", "-", "-", "-", "Item", "Qty", "Price", "Total");
-                DgvFactList.Rows[index].DefaultCellStyle.BackColor = Color.LightGreen;
-                DgvFactList.Rows[index].DefaultCellStyle.Font = new Font("Arial", 8, FontStyle.Bold); // تغيير الخط للعقد الرئيسية
-
-                foreach (var child in node.Details)
-                {
-                    AddDetailNode(child);
-                }
-            }
         }
 
-        // إضافة عقدة فرعية (Detailes) إلى DataGridView
-        private void AddDetailNode(Details node)
-        {
-            // إنشاء صف جديد
-            int index = DgvFactList.Rows.Add(null, null, null, null, node.Item_Code, node.Item_Qty, node.Item_Price, node.total_Price);
-            DgvFactList.Rows[index].DefaultCellStyle.BackColor = Color.White;
-        }
 
-        List<dataType> FillDgv()
+        void FillDgv()
         {
             var headers = (from hed in db.Invoice_Header
                            from cust in db.CustAndVends
@@ -132,7 +112,7 @@ namespace PRINT_INVOICE
                            }).ToList();
 
             // ربط البيانات
-            var result = headers.Select(h => 
+            query = headers.Select(h => 
                          new dataType
             {
                 ID = h.ID,
@@ -157,28 +137,42 @@ namespace PRINT_INVOICE
                 }).ToList(),
             }).ToList();
 
-            return result;
+            headers.Clear();
+            details.Clear();
         }
 
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if (query != null)
-            //    DgvFactList.DataSource = query.Where(t => t.Type == (InvoiceType)comboBox1.SelectedIndex).ToList();
+            if (query != null)
+            {
+                var filteredData = query.Where(t => t.Type == (InvoiceType)comboBox1.SelectedItem).ToList();
+                PopulateTreeData(filteredData);
+            }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(DgvFactList.SelectedRows[0].Cells[0].Value);
-            FrmInvoice frm = new FrmInvoice(id);
-            frm.Show();
+            if (IsHeader())
+            {
+                FrmInvoice frm = new FrmInvoice(id);
+                frm.Show();
+            }
+        }
+
+        private bool IsHeader()
+        {
+            if (DgvFactList.SelectedRows[0].Tag != null)
+                return true;
+            return false;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             using (var contexte = new DBContext())
             {
-                if (DgvFactList.SelectedRows.Count >= 0)
+                if (DgvFactList.SelectedRows.Count >= 0 && IsHeader())
                 {
                     var result = MessageBox.Show("هل انت متأكد من حذف هذه الفاتورة", "تأكيد الحذف", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (result == DialogResult.Yes)
@@ -197,7 +191,11 @@ namespace PRINT_INVOICE
                                 contexte.SaveChanges();
                                 /////////////////////////////////
                                 query.Remove(query.Where(r => r.ID == id).SingleOrDefault());
-                                DgvFactList.DataSource = query.Where(t => t.Type == (InvoiceType)comboBox1.SelectedIndex).ToList();
+                                int index = DgvFactList.SelectedRows[0].Index;
+
+                                for (int i = index + ((dataType)DgvFactList.SelectedRows[0].Tag).Details.Count + 1; i >= index; i--)
+                                    DgvFactList.Rows.RemoveAt(i);
+
                                 /////////////////////////////////
                                 transaction.Commit();
                                 MessageBox.Show("تم حذف الفاتورة المحددة بنجاح", "حذف", MessageBoxButtons.OK);
@@ -218,21 +216,43 @@ namespace PRINT_INVOICE
 
         private void DgvFactList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // التحقق من أن النقر في العمود الأول (رمز التوسيع/الإغلاق)
-            if (e.RowIndex >= 0 && e.ColumnIndex == 1)
+            if (e.RowIndex >= 0 && e.ColumnIndex == 1) // النقر على العمود المخصص للتوسيع
             {
                 var row = DgvFactList.Rows[e.RowIndex];
                 var node = row.Tag as dataType;
 
-                if (node != null && node.Details.Count > 0)
+                if (node != null && node.Details != null)
                 {
-                    // تبديل حالة التوسيع
                     node.IsExpanded = !node.IsExpanded;
 
-                    // تحديث الصفوف مباشرة باستخدام البيانات المخزنة
-                    PopulateTreeData(query);
+                    if (node.IsExpanded)
+                    {
+                        DgvFactList.Rows.Insert(e.RowIndex + 1, null, null, null, null, "Item", "Qty", "Price", "SupTotal");
+                        DgvFactList.Rows[e.RowIndex + 1].DefaultCellStyle.BackColor = Color.LightGreen;
+                        DgvFactList.Rows[e.RowIndex + 1].DefaultCellStyle.Font = new Font("Arial", 8, FontStyle.Bold); // تغيير الخط للعقد الرئيسية
+
+                        // أضف الصفوف الفرعية للعقدة
+                        foreach (var child in node.Details)
+                        {
+                            AddDetailNode(child, e.RowIndex + 2);
+                        }
+                    }
+                    else
+                    {
+                        // احذف الصفوف الفرعية
+                        for (int i = e.RowIndex + node.Details.Count + 1; i > e.RowIndex; i--)
+                        {
+                            DgvFactList.Rows.RemoveAt(i);
+                        }
+                    }
                 }
             }
+        }
+        // إضافة عقدة فرعية (Detailes) إلى DataGridView
+        private void AddDetailNode(Details node, int insertIndex)
+        {
+            DgvFactList.Rows.Insert(insertIndex, null, null, null, null, node.Item_Code, node.Item_Qty, node.Item_Price, node.total_Price);
+            DgvFactList.Rows[insertIndex].DefaultCellStyle.BackColor = Color.White;
         }
     }
     class dataType 
