@@ -99,7 +99,7 @@ namespace PRINT_INVOICE
 
             //DgvFactList.DataSource = query.Where(t => t.Type == (InvoiceType)comboBox1.SelectedIndex).ToList();
             InitializeTreeGridView();
-            //DgvFactList.Columns["ID"].Visible = false;
+            DgvFactList.Columns["0"].Visible = false;
             //DgvFactList.Columns["Type"].Visible = false;
         }
 
@@ -241,7 +241,7 @@ namespace PRINT_INVOICE
             }
         }
     }
-    class dataType
+    class dataType 
     {
         public int Level { get; set; } = 0; // المستوى (0 = رئيسي)
         public bool IsExpanded { get; set; } = false; // حالة التوسيع
