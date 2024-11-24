@@ -16,6 +16,13 @@ namespace PRINT_INVOICE
         {
             InitializeComponent();
         }
+
+        private void FrmFactList_Load(object sender, EventArgs e)
+        {
+            comboBox1.DataSource = new List<InvoiceType>() { InvoiceType.Sales, InvoiceType.purchase, };
+            InitializeTreeGridView();
+        }
+
         // إعداد DataGridView لعرض الشجرة
         private void InitializeTreeGridView()
         {
@@ -29,6 +36,7 @@ namespace PRINT_INVOICE
             // إنشاء أعمدة DataGridView
             DgvFactList.Columns.Clear();
             // عمود لعرض أسماء الشاشات
+            DgvFactList.Columns.Add("ID", "ID");
             DgvFactList.Columns.Add("Nu", "الرقم");
             DgvFactList.Columns.Add("Net", "الصافي");
             DgvFactList.Columns.Add("Paid", "المدفوع");
@@ -38,6 +46,7 @@ namespace PRINT_INVOICE
             DgvFactList.Columns.Add("Date", "التاريخ");
             DgvFactList.Columns.Add("Total", "المجموع");
             DgvFactList.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft; // ضبط محاذاة النص
+            DgvFactList.Columns[0].Visible = false;
 
             // تحميل البيانات الأولية للشجرة
             query = FillDgv();
@@ -86,21 +95,6 @@ namespace PRINT_INVOICE
             // إنشاء صف جديد
             int index = DgvFactList.Rows.Add(null, null, null, null, node.Item_Code, node.Item_Qty, node.Item_Price, node.total_Price);
             DgvFactList.Rows[index].DefaultCellStyle.BackColor = Color.White;
-        }
-
-        private void FrmFactList_Load(object sender, EventArgs e)
-        {
-            comboBox1.DataSource = new List<InvoiceType>()
-            {
-                InvoiceType.Sales,
-                InvoiceType.purchase,
-            };
-
-
-            //DgvFactList.DataSource = query.Where(t => t.Type == (InvoiceType)comboBox1.SelectedIndex).ToList();
-            InitializeTreeGridView();
-            DgvFactList.Columns["0"].Visible = false;
-            //DgvFactList.Columns["Type"].Visible = false;
         }
 
         List<dataType> FillDgv()
@@ -225,7 +219,7 @@ namespace PRINT_INVOICE
         private void DgvFactList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // التحقق من أن النقر في العمود الأول (رمز التوسيع/الإغلاق)
-            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+            if (e.RowIndex >= 0 && e.ColumnIndex == 1)
             {
                 var row = DgvFactList.Rows[e.RowIndex];
                 var node = row.Tag as dataType;
