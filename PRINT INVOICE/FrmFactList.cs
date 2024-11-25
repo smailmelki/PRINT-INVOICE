@@ -159,6 +159,10 @@ namespace PRINT_INVOICE
                 FrmInvoice frm = new FrmInvoice(id);
                 frm.Show();
             }
+            else
+            {
+                MessageBox.Show("اختر رأس الفاتورة لتعديلها", "خطأ", MessageBoxButtons.OK);
+            }
         }
 
         private bool IsHeader()
@@ -209,7 +213,7 @@ namespace PRINT_INVOICE
                 }
                 else
                 {
-                    MessageBox.Show("اختر فاتورة لحذفها", "خطأ", MessageBoxButtons.OK);
+                    MessageBox.Show("اختر رأس الفاتورة لحذفها", "خطأ", MessageBoxButtons.OK);
                 }
             }
         }

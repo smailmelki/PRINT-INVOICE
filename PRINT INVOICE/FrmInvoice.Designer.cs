@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmInvoice));
             this.btnAdd = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -154,7 +154,7 @@
             // 
             // btnCustAdd
             // 
-            this.btnCustAdd.Location = new System.Drawing.Point(12, 83);
+            this.btnCustAdd.Location = new System.Drawing.Point(12, 85);
             this.btnCustAdd.Name = "btnCustAdd";
             this.btnCustAdd.Size = new System.Drawing.Size(64, 32);
             this.btnCustAdd.TabIndex = 4;
@@ -328,8 +328,8 @@
             // 
             // colPrice
             // 
-            dataGridViewCellStyle6.NullValue = "0.00";
-            this.colPrice.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle8.NullValue = "0.00";
+            this.colPrice.DefaultCellStyle = dataGridViewCellStyle8;
             this.colPrice.HeaderText = "سعر الوحدة";
             this.colPrice.MaxInputLength = 140;
             this.colPrice.MinimumWidth = 60;
@@ -686,7 +686,7 @@
             this.pictureBox1.Image = global::PRINT_INVOICE.Properties.Resources.logo;
             this.pictureBox1.Location = new System.Drawing.Point(20, 15);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(241, 158);
+            this.pictureBox1.Size = new System.Drawing.Size(241, 175);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
@@ -695,6 +695,7 @@
             // 
             this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.White;
             this.flowLayoutPanel1.Controls.Add(this.label14);
             this.flowLayoutPanel1.Controls.Add(this.txtCode);
             this.flowLayoutPanel1.Controls.Add(this.label4);
@@ -704,10 +705,10 @@
             this.flowLayoutPanel1.Controls.Add(this.label6);
             this.flowLayoutPanel1.Controls.Add(this.txtQty);
             this.flowLayoutPanel1.Controls.Add(this.btnAdd);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 212);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 211);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(10);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(998, 62);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(998, 63);
             this.flowLayoutPanel1.TabIndex = 10;
             // 
             // printPreviewDialog1
