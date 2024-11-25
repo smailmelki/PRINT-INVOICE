@@ -121,6 +121,9 @@
             this.Controls.Add(this.btnSave);
             this.Font = new System.Drawing.Font("Tahoma", 12F);
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(519, 455);
+            this.MinimumSize = new System.Drawing.Size(519, 455);
             this.Name = "FrmAddCustOrVend";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;

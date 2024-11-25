@@ -40,7 +40,7 @@
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(52, 196);
+            this.txtUsername.Location = new System.Drawing.Point(201, 199);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(286, 36);
             this.txtUsername.TabIndex = 0;
@@ -49,7 +49,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(344, 199);
+            this.label1.Location = new System.Drawing.Point(24, 202);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(171, 29);
             this.label1.TabIndex = 2;
@@ -58,7 +58,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(344, 254);
+            this.label2.Location = new System.Drawing.Point(68, 256);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(127, 29);
             this.label2.TabIndex = 3;
@@ -66,7 +66,7 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(52, 250);
+            this.txtPassword.Location = new System.Drawing.Point(201, 253);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(286, 36);
@@ -77,7 +77,7 @@
             // 
             this.btnLogIn.Image = global::PRINT_INVOICE.Properties.Resources.entreIcon;
             this.btnLogIn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnLogIn.Location = new System.Drawing.Point(216, 317);
+            this.btnLogIn.Location = new System.Drawing.Point(144, 320);
             this.btnLogIn.Name = "btnLogIn";
             this.btnLogIn.Size = new System.Drawing.Size(149, 55);
             this.btnLogIn.TabIndex = 2;
@@ -91,7 +91,7 @@
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.Image = global::PRINT_INVOICE.Properties.Resources.closeIcon;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.Location = new System.Drawing.Point(52, 317);
+            this.btnClose.Location = new System.Drawing.Point(350, 320);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(149, 55);
             this.btnClose.TabIndex = 3;
@@ -103,7 +103,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::PRINT_INVOICE.Properties.Resources.loginIcon;
-            this.pictureBox1.Location = new System.Drawing.Point(86, 9);
+            this.pictureBox1.Location = new System.Drawing.Point(235, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(229, 178);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -126,8 +126,13 @@
             this.Controls.Add(this.txtUsername);
             this.Font = new System.Drawing.Font("Tahoma", 12F);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(561, 465);
+            this.MinimumSize = new System.Drawing.Size(561, 465);
             this.Name = "frmLogIn";
-            this.Text = "frmLogIn";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.RightToLeftLayout = true;
+            this.Text = "دخول";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmLogIn_FormClosed);
             this.Load += new System.EventHandler(this.frmLogIn_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

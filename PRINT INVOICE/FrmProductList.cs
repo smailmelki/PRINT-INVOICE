@@ -15,12 +15,12 @@ namespace PRINT_INVOICE
         private void FrmProductList_Load(object sender, EventArgs e)
         {
             FillData();
-            dataGridView1.Columns["id"].Visible = false;
-            dataGridView1.Columns["code"].HeaderText = "كود الصنف";
-            dataGridView1.Columns["productName"].HeaderText = "اسم الصنف";
-            dataGridView1.Columns["BuyPrice"].Visible = false;
-            dataGridView1.Columns["SalePrice"].HeaderText = "سعر الصنف";
-            dataGridView1.Columns["IsActive"].HeaderText = "متوفر";
+            dataGridView1.Columns[nameof(product.id)].Visible = false;
+            dataGridView1.Columns[nameof(product.code)].HeaderText = "كود الصنف";
+            dataGridView1.Columns[nameof(product.productName)].HeaderText = "اسم الصنف";
+            dataGridView1.Columns[nameof(product.BuyPrice)].Visible = false;
+            dataGridView1.Columns[nameof(product.SalePrice)].HeaderText = "سعر الصنف";
+            dataGridView1.Columns[nameof(product.IsActive)].HeaderText = "متوفر";
         }
         public void FillData()
         {
@@ -38,7 +38,6 @@ namespace PRINT_INVOICE
         {
             if (dataGridView1.CurrentRow != null)
             {
-                int ID = (int)dataGridView1.CurrentRow.Cells["id"].Value;
                 FrmProduct frm = new FrmProduct(product);
                 frm.ShowDialog();
                 dataGridView1.DataSource = Util.products.ToList();
@@ -72,7 +71,7 @@ namespace PRINT_INVOICE
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                product = dataGridView1.SelectedRows[0].DataBoundItem as DAL.products;
+                product = dataGridView1.CurrentRow.DataBoundItem as DAL.products;
             }
         }
     }
