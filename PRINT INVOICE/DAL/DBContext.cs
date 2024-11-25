@@ -2,7 +2,6 @@ using System.Data.Entity;
 using System.Data.Entity.Migrations;
 namespace PRINT_INVOICE.DAL
 {
-
     public partial class DBContext : DbContext
     {
         public DBContext()
@@ -31,5 +30,4 @@ namespace PRINT_INVOICE.DAL
             base.Seed(context);
         }
     }
-
 }

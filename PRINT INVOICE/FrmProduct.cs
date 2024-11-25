@@ -25,6 +25,16 @@ namespace PRINT_INVOICE
 
         }
 
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            product = new DAL.products();
+            txtCode.Text = string.Empty;
+            txtName.Text = string.Empty;
+            txtBuy.Text = string.Empty;
+            txtSale.Text = string.Empty;
+            cheIsActive.Checked = true;
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
@@ -34,6 +44,7 @@ namespace PRINT_INVOICE
                 db.SaveChanges();
                 Util.products.Remove(Util.products.Where(p => p.id == product.id).FirstOrDefault());
                 Util.products.Add(product);
+                ((FrmProductList)Application.OpenForms[nameof(FrmProductList)]).FillData();
                 MessageBox.Show("تمت حفظ العنصر بنجاح");
             }
             catch (Exception)
@@ -47,7 +58,7 @@ namespace PRINT_INVOICE
             product.productName = txtName.Text;
             product.BuyPrice = Convert.ToDecimal(txtBuy.Text);
             product.SalePrice = Convert.ToDecimal(txtSale.Text);
-            product.IsActive = chkIsActive.Checked;
+            product.IsActive = cheIsActive.Checked;
         }
         void getdata()
         {
@@ -55,12 +66,12 @@ namespace PRINT_INVOICE
             txtName.Text = product.productName;
             txtBuy.Text = product.BuyPrice.ToString();
             txtSale.Text = product.SalePrice.ToString();
-            chkIsActive.Checked = product.IsActive;
+            cheIsActive.Checked = product.IsActive;
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            product = new DAL.products();
             this.Close();
         }
-
     }
 }

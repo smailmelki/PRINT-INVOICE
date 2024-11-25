@@ -59,5 +59,10 @@ namespace PRINT_INVOICE
             if (!correctUser)
                 Application.Exit();
         }
+
+        private void frmLogIn_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

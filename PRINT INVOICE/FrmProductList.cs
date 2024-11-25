@@ -14,7 +14,7 @@ namespace PRINT_INVOICE
         DAL.products product;
         private void FrmProductList_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = Util.products.ToList();
+            FillData();
             dataGridView1.Columns["id"].Visible = false;
             dataGridView1.Columns["code"].HeaderText = "كود الصنف";
             dataGridView1.Columns["productName"].HeaderText = "اسم الصنف";
@@ -22,12 +22,16 @@ namespace PRINT_INVOICE
             dataGridView1.Columns["SalePrice"].HeaderText = "سعر الصنف";
             dataGridView1.Columns["IsActive"].HeaderText = "متوفر";
         }
+        public void FillData()
+        {
+            dataGridView1.DataSource = Util.products.ToList();
+        }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             FrmProduct frm = new FrmProduct();
             frm.ShowDialog();
-            dataGridView1.DataSource = Util.products.ToList();
+            FillData();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)

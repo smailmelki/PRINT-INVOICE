@@ -1,8 +1,7 @@
+using System;
+using System.ComponentModel.DataAnnotations;
 namespace PRINT_INVOICE.DAL
 {
-    using System;
-    using System.ComponentModel.DataAnnotations;
-
     public partial class Invoice_Header
     {
         public int ID { get; set; }

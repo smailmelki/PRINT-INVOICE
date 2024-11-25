@@ -580,7 +580,7 @@ namespace PRINT_INVOICE
 
         }
 
-        #region report
+        #region Report Code
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {

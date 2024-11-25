@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
 namespace PRINT_INVOICE.DAL
 {
     public class CustAndVend

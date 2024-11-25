@@ -41,7 +41,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtSale = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.chkIsActive = new System.Windows.Forms.CheckBox();
+            this.cheIsActive = new System.Windows.Forms.CheckBox();
+            this.btnNew = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,7 +52,7 @@
             this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(31, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 29);
+            this.label1.Size = new System.Drawing.Size(157, 35);
             this.label1.TabIndex = 0;
             this.label1.Text = "كود الصنف :";
             // 
@@ -60,8 +61,8 @@
             this.txtCode.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCode.Location = new System.Drawing.Point(169, 33);
             this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(201, 36);
-            this.txtCode.TabIndex = 1;
+            this.txtCode.Size = new System.Drawing.Size(201, 42);
+            this.txtCode.TabIndex = 0;
             // 
             // label2
             // 
@@ -69,7 +70,7 @@
             this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(19, 84);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(144, 29);
+            this.label2.Size = new System.Drawing.Size(171, 35);
             this.label2.TabIndex = 0;
             this.label2.Text = "اسم الصنف :";
             // 
@@ -78,7 +79,7 @@
             this.txtName.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtName.Location = new System.Drawing.Point(169, 81);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(201, 36);
+            this.txtName.Size = new System.Drawing.Size(201, 42);
             this.txtName.TabIndex = 1;
             // 
             // label3
@@ -87,7 +88,7 @@
             this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(17, 132);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(146, 29);
+            this.label3.Size = new System.Drawing.Size(173, 35);
             this.label3.TabIndex = 0;
             this.label3.Text = "سعر الشراء :";
             // 
@@ -96,8 +97,8 @@
             this.txtBuy.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBuy.Location = new System.Drawing.Point(169, 129);
             this.txtBuy.Name = "txtBuy";
-            this.txtBuy.Size = new System.Drawing.Size(201, 36);
-            this.txtBuy.TabIndex = 1;
+            this.txtBuy.Size = new System.Drawing.Size(201, 42);
+            this.txtBuy.TabIndex = 2;
             // 
             // picImage
             // 
@@ -110,10 +111,10 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(207, 306);
+            this.btnSave.Location = new System.Drawing.Point(252, 306);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(118, 55);
-            this.btnSave.TabIndex = 3;
+            this.btnSave.TabIndex = 6;
             this.btnSave.Text = "حفظ";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -123,7 +124,7 @@
             this.btnCancel.Location = new System.Drawing.Point(423, 306);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(118, 55);
-            this.btnCancel.TabIndex = 4;
+            this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "الغاء";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -143,7 +144,7 @@
             this.label4.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(29, 225);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(136, 29);
+            this.label4.Size = new System.Drawing.Size(163, 35);
             this.label4.TabIndex = 0;
             this.label4.Text = "صنف متوفر :";
             // 
@@ -152,8 +153,8 @@
             this.txtSale.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSale.Location = new System.Drawing.Point(169, 179);
             this.txtSale.Name = "txtSale";
-            this.txtSale.Size = new System.Drawing.Size(201, 36);
-            this.txtSale.TabIndex = 8;
+            this.txtSale.Size = new System.Drawing.Size(201, 42);
+            this.txtSale.TabIndex = 3;
             // 
             // label5
             // 
@@ -161,31 +162,42 @@
             this.label5.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(37, 182);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(126, 29);
+            this.label5.Size = new System.Drawing.Size(149, 35);
             this.label5.TabIndex = 7;
             this.label5.Text = "سعر البيع :";
             // 
-            // chkIsActive
+            // cheIsActive
             // 
-            this.chkIsActive.AutoSize = true;
-            this.chkIsActive.Location = new System.Drawing.Point(216, 230);
-            this.chkIsActive.Name = "chkIsActive";
-            this.chkIsActive.Size = new System.Drawing.Size(74, 28);
-            this.chkIsActive.TabIndex = 9;
-            this.chkIsActive.Text = "متوفر";
-            this.chkIsActive.UseVisualStyleBackColor = true;
+            this.cheIsActive.AutoSize = true;
+            this.cheIsActive.Location = new System.Drawing.Point(216, 230);
+            this.cheIsActive.Name = "cheIsActive";
+            this.cheIsActive.Size = new System.Drawing.Size(90, 33);
+            this.cheIsActive.TabIndex = 4;
+            this.cheIsActive.Text = "متوفر";
+            this.cheIsActive.UseVisualStyleBackColor = true;
+            // 
+            // btnNew
+            // 
+            this.btnNew.Location = new System.Drawing.Point(86, 306);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(118, 55);
+            this.btnNew.TabIndex = 6;
+            this.btnNew.Text = "جديد";
+            this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // FrmProduct
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(618, 397);
-            this.Controls.Add(this.chkIsActive);
+            this.Controls.Add(this.cheIsActive);
             this.Controls.Add(this.txtSale);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnBrows);
             this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnNew);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.picImage);
             this.Controls.Add(this.txtBuy);
@@ -224,6 +236,7 @@
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.TextBox txtSale;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.CheckBox chkIsActive;
+        private System.Windows.Forms.CheckBox cheIsActive;
+        public System.Windows.Forms.Button btnNew;
     }
 }
