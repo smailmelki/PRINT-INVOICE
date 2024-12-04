@@ -25,7 +25,7 @@ namespace PRINT_INVOICE.DAL
     {
         protected override void Seed(DBContext context)
         {
-            context.Users.AddOrUpdate(new User { ID = 1, Name = "Admin", Password = "Admin", Username = "admin", Roles = 0 });
+            context.Users.AddOrUpdate(new User { ID = 1, Name = "Admin", Password = "Admin", Username = "Admin", Roles = 0 });
             context.SaveChanges();
             base.Seed(context);
         }
