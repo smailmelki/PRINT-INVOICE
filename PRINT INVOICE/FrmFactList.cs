@@ -10,7 +10,7 @@ namespace PRINT_INVOICE
 {
     public partial class FrmFactList : Form
     {
-        private List<dataType> query;
+        private List<dataType> data;
         DBContext db= new DBContext();
         public FrmFactList()
         {
@@ -50,7 +50,7 @@ namespace PRINT_INVOICE
 
             // تحميل البيانات الأولية للشجرة
             FillDgv();
-            PopulateTreeData(query.Where(t => t.Type == (InvoiceType)comboBox1.SelectedItem).ToList());
+            PopulateTreeData(data.Where(t => t.Type == (InvoiceType)comboBox1.SelectedItem).ToList());
         }
 
         // ملء الشجرة بالبيانات
@@ -112,7 +112,7 @@ namespace PRINT_INVOICE
                            }).ToList();
 
             // ربط البيانات
-            query = headers.Select(h => 
+            data = headers.Select(h => 
                          new dataType
             {
                 ID = h.ID,
@@ -144,9 +144,9 @@ namespace PRINT_INVOICE
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (query != null)
+            if (data != null)
             {
-                var filteredData = query.Where(t => t.Type == (InvoiceType)comboBox1.SelectedItem).ToList();
+                var filteredData = data.Where(t => t.Type == (InvoiceType)comboBox1.SelectedItem).ToList();
                 PopulateTreeData(filteredData);
             }
         }
@@ -194,7 +194,7 @@ namespace PRINT_INVOICE
                                     contexte.Invoice_Header.Remove(invoice);
                                 contexte.SaveChanges();
                                 /////////////////////////////////
-                                query.Remove(query.Where(r => r.ID == id).SingleOrDefault());
+                                data.Remove(data.Where(r => r.ID == id).SingleOrDefault());
                                 int index = DgvFactList.SelectedRows[0].Index;
 
                                 for (int i = index + ((dataType)DgvFactList.SelectedRows[0].Tag).Details.Count + 1; i >= index; i--)
@@ -220,6 +220,7 @@ namespace PRINT_INVOICE
 
         private void DgvFactList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            DgvFactList.SuspendLayout();
             if (e.RowIndex >= 0 && e.ColumnIndex == 1) // النقر على العمود المخصص للتوسيع
             {
                 var row = DgvFactList.Rows[e.RowIndex];
@@ -251,6 +252,7 @@ namespace PRINT_INVOICE
                     }
                 }
             }
+            DgvFactList.ResumeLayout();
         }
         // إضافة عقدة فرعية (Detailes) إلى DataGridView
         private void AddDetailNode(Details node, int insertIndex)

@@ -723,6 +723,5 @@ namespace PRINT_INVOICE
             graphics.DrawLine(Pens.Black, margin, RemainY - 6 * a + ColumnHeight, pageBounds.Width - Column2Width - 2 * margin, RemainY - 6 * a + ColumnHeight);
         }
         #endregion
-
     }
 }

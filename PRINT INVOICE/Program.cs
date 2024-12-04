@@ -20,7 +20,7 @@ namespace PRINT_INVOICE
             if (Debugger.IsAttached)
             {
                 frm.txtUsername.Text = "Admin";
-                frm.txtPassword.Text = "admin";
+                frm.txtPassword.Text = "Admin";
                 frm.btnLogIn_Click(null, null);
             }
 
