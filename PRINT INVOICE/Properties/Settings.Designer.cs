@@ -29,9 +29,9 @@ namespace PRINT_INVOICE.Properties {
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=Invoice_DB_Sales;Integrated Security=True;MultipleA" +
             "ctiveResultSets=True;TrustServerCertificate=True;Application Name=EntityFramewor" +
             "k")]
-        public string Model1 {
+        public string ConnectionString {
             get {
-                return ((string)(this["Model1"]));
+                return ((string)(this["ConnectionString"]));
             }
         }
     }

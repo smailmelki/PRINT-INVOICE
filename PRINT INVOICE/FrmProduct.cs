@@ -40,6 +40,11 @@ namespace PRINT_INVOICE
             try
             {
                 setdata();
+                if (db.products.Any(p => p.code == product.code && p.id != product.id))
+                {
+                    MessageBox.Show("هذا الكود مكرر");
+                    return;
+                }
                 db.products.AddOrUpdate(product);
                 db.SaveChanges();
                 Util.products.Remove(Util.products.Where(p => p.id == product.id).FirstOrDefault());
