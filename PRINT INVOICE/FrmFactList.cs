@@ -36,6 +36,7 @@ namespace PRINT_INVOICE
             // إنشاء أعمدة DataGridView
             DgvFactList.Columns.Clear();
             // عمود لعرض أسماء الشاشات
+            DgvFactList.Columns.Add("+", " ");
             DgvFactList.Columns.Add("ID", "ID");
             DgvFactList.Columns.Add("Nu", "الرقم");
             DgvFactList.Columns.Add("Net", "الصافي");
@@ -45,11 +46,12 @@ namespace PRINT_INVOICE
             DgvFactList.Columns.Add("Type", "النوع");
             DgvFactList.Columns.Add("Date", "التاريخ");
             DgvFactList.Columns.Add("Total", "المجموع");
-            DgvFactList.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft; // ضبط محاذاة النص
-            DgvFactList.Columns[0].Visible = false;
+            DgvFactList.Columns[0].Width = 20;
+            DgvFactList.Columns[1].Visible = false;
+            DgvFactList.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft; // ضبط محاذاة النص
+            DgvFactList.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; // ضبط محاذاة النص
 
             // تحميل البيانات الأولية للشجرة
-            //FillDgv();
             FillData();
             PopulateTreeData(data.Where(t => t.Type == (InvoiceType)comboBox1.SelectedItem).ToList());
         }
@@ -70,7 +72,7 @@ namespace PRINT_INVOICE
         private void AddHeaderNode(dataType node)
         {
             // إنشاء صف جديد
-            int rowIndex = DgvFactList.Rows.Add(node.ID, node.Nu, node.Net, node.Paid, node.Remain, node.Name, node.Type, node.Date.ToString("dd-MM-yyyy"), node.Total);
+            int rowIndex = DgvFactList.Rows.Add("+",node.ID, node.Nu, node.Net, node.Paid, node.Remain, node.Name, node.Type, node.Date.ToString("dd-MM-yyyy"), node.Total);
             DgvFactList.Rows[rowIndex].DefaultCellStyle.BackColor = rowIndex % 2 == 1 ? Color.WhiteSmoke : Color.LightGray;
             DgvFactList.Rows[rowIndex].DefaultCellStyle.Font = new Font("Arial", 9, FontStyle.Bold); // تغيير الخط للعقد الرئيسية
             var row = DgvFactList.Rows[rowIndex];
@@ -189,7 +191,7 @@ namespace PRINT_INVOICE
         private void DgvFactList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DgvFactList.SuspendLayout();
-            if (e.RowIndex >= 0 && e.ColumnIndex == 1) // النقر على العمود المخصص للتوسيع
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0) // النقر على العمود المخصص للتوسيع
             {
                 var row = DgvFactList.Rows[e.RowIndex];
                 var node = row.Tag as dataType;
@@ -197,9 +199,9 @@ namespace PRINT_INVOICE
                 if (node != null && node.Details != null)
                 {
                     node.IsExpanded = !node.IsExpanded;
-
                     if (node.IsExpanded)
                     {
+                        DgvFactList.Rows[e.RowIndex].Cells[0].Value = "-";
                         DgvFactList.Rows.Insert(e.RowIndex + 1, null, null, null, null, "Item", "Qty", "Price", "SupTotal");
                         DgvFactList.Rows[e.RowIndex + 1].DefaultCellStyle.BackColor = Color.LightGreen;
                         DgvFactList.Rows[e.RowIndex + 1].DefaultCellStyle.Font = new Font("Arial", 8, FontStyle.Bold); // تغيير الخط للعقد الرئيسية
@@ -212,6 +214,7 @@ namespace PRINT_INVOICE
                     }
                     else
                     {
+                        DgvFactList.Rows[e.RowIndex].Cells[0].Value = "+";
                         // احذف الصفوف الفرعية
                         for (int i = e.RowIndex + node.Details.Count + 1; i > e.RowIndex; i--)
                         {
