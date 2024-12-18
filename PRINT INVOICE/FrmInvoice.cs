@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.Entity.Migrations;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -85,23 +86,25 @@ namespace PRINT_INVOICE
         }
 
 
-        public static string GetNextNumberInString(string Number)
+        public static string GetNextNumberInString(string OldCode)
         {
-            if (Number == string.Empty || Number == null)
+            // إذا كان النص فارغًا أو null، نرجع "1"
+            if (string.IsNullOrEmpty(OldCode))
                 return "1";
-            string str1 = string.Empty;
-            foreach (char c in Number)
-                str1 = char.IsDigit(c) ? str1 + c.ToString() : string.Empty;
-            if (str1 == string.Empty)
-                return Number + "1";
-            string str2 = str1.Insert(0, "1");
-            str2 = (Convert.ToInt64(str2) + 1).ToString();
-            string str3 = str2[0] == '1' ? str2.Remove(0, 1) : str2.Remove(0, 1).Insert(0, "1");
 
-            int indx = Number.LastIndexOf(str1);
-            Number = Number.Remove(indx);
-            Number = Number.Insert(indx, str3);
-            return Number;
+            // استخراج الجزء الرقمي من آخر النص
+            string NumericPart = new string(OldCode.Reverse().TakeWhile(char.IsDigit).Reverse().ToArray());
+
+            // إذا لم يحتوي النص على أرقام، نضيف "1" في النهاية
+            if (string.IsNullOrEmpty(NumericPart))
+                return OldCode + "1";
+
+            // تحويل الجزء الرقمي إلى رقم وزيادته بمقدار واحد
+            long NewNumber = Convert.ToInt64(NumericPart) + 1;
+
+            // استبدال الجزء الرقمي القديم بالجديد مع الحفاظ على طول النص
+            return OldCode.Replace(NumericPart, NewNumber.ToString().PadLeft(NumericPart.Length, '0'));
+
         }
 
         private void txtTotal_KeyPress(object sender, KeyPressEventArgs e)
