@@ -48,8 +48,9 @@ namespace PRINT_INVOICE
             DgvFactList.Columns.Add("Total", "المجموع");
             DgvFactList.Columns[0].Width = 20;
             DgvFactList.Columns[1].Visible = false;
-            DgvFactList.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft; // ضبط محاذاة النص
+            DgvFactList.Columns[2].Width = 30;
             DgvFactList.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; // ضبط محاذاة النص
+            DgvFactList.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; // ضبط محاذاة النص
 
             // تحميل البيانات الأولية للشجرة
             FillData();
@@ -83,32 +84,32 @@ namespace PRINT_INVOICE
         {
             // تهيئة البيانات
             data = (from h in db.Invoice_Header
-                         from cust in db.CustAndVends
-                             .Where(x => x.ID == h.Customer_ID).DefaultIfEmpty()
-                         select new dataType
-                         {
-                             ID = h.ID,
-                             Nu = h.Invoice_Nu,
-                             Date = h.Invoice_Date,
-                             Name = cust.Name,
-                             Total = h.Invoice_Total,
-                             Discount = h.Invoice_Discount,
-                             Tax = h.Invoice_Tax,
-                             Net = h.Invoice_Net,
-                             Paid = h.Invoice_Paid,
-                             Remain = h.Invoice_remain,
-                             Type = h.Invoice_Type,
-                             Note = h.invoice_Note,
-                             Details = (from dt in db.Invoice_Det.Where(x => x.InvoiceID == h.ID)
-                                        from p in db.products.Where(x => x.code == dt.Item_Code).DefaultIfEmpty()
-                                        select new Details
-                                        {
-                                            Item_Code = p.productName,
-                                            Item_Qty = dt.Item_Qty,
-                                            Item_Price = dt.Item_Price,
-                                            total_Price = dt.total_Price
-                                        }).ToList()
-                         }).ToList();
+                    from cust in db.CustAndVends
+                        .Where(x => x.ID == h.Customer_ID).DefaultIfEmpty()
+                    select new dataType
+                    {
+                        ID = h.ID,
+                        Nu = h.Invoice_Nu,
+                        Date = h.Invoice_Date,
+                        Name = cust.Name,
+                        Total = h.Invoice_Total,
+                        Discount = h.Invoice_Discount,
+                        Tax = h.Invoice_Tax,
+                        Net = h.Invoice_Net,
+                        Paid = h.Invoice_Paid,
+                        Remain = h.Invoice_remain,
+                        Type = h.Invoice_Type,
+                        Note = h.invoice_Note,
+                        Details = (from dt in db.Invoice_Det.Where(x => x.InvoiceID == h.ID)
+                                   from p in db.products.Where(x => x.code == dt.Item_Code).DefaultIfEmpty()
+                                   select new Details
+                                   {
+                                       Item_Code = p.productName,
+                                       Item_Qty = dt.Item_Qty,
+                                       Item_Price = dt.Item_Price,
+                                       total_Price = dt.total_Price
+                                   }).ToList()
+                    }).ToList();
         }
 
 
@@ -158,17 +159,28 @@ namespace PRINT_INVOICE
                             {
                                 var invoiceDet = contexte.Invoice_Det.Where(d => d.InvoiceID == id);
                                 if (invoiceDet.Any())
+                                {
                                     contexte.Invoice_Det.RemoveRange(invoiceDet);
+                                    contexte.SaveChanges();
+                                }
                                 var invoice = contexte.Invoice_Header.SingleOrDefault(h => h.ID == id);
                                 if (invoice != null)
+                                {
                                     contexte.Invoice_Header.Remove(invoice);
-                                contexte.SaveChanges();
+                                    contexte.SaveChanges();
+                                }
                                 /////////////////////////////////
                                 data.Remove(data.Where(r => r.ID == id).SingleOrDefault());
                                 int index = DgvFactList.SelectedRows[0].Index;
-
-                                for (int i = index + ((dataType)DgvFactList.SelectedRows[0].Tag).Details.Count + 1; i >= index; i--)
-                                    DgvFactList.Rows.RemoveAt(i);
+                                if (((dataType)DgvFactList.SelectedRows[0].Tag).IsExpanded)
+                                {
+                                    for (int i = index + ((dataType)DgvFactList.SelectedRows[0].Tag).Details.Count + 1; i >= index; i--)
+                                        DgvFactList.Rows.RemoveAt(i);
+                                }
+                                else
+                                {
+                                    DgvFactList.Rows.RemoveAt(index);
+                                }
 
                                 /////////////////////////////////
                                 transaction.Commit();
