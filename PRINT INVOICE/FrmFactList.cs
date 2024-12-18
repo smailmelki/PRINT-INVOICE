@@ -49,7 +49,8 @@ namespace PRINT_INVOICE
             DgvFactList.Columns[0].Visible = false;
 
             // تحميل البيانات الأولية للشجرة
-            FillDgv();
+            //FillDgv();
+            FillData();
             PopulateTreeData(data.Where(t => t.Type == (InvoiceType)comboBox1.SelectedItem).ToList());
         }
 
@@ -76,69 +77,36 @@ namespace PRINT_INVOICE
             row.Tag = node; // تخزين بيانات العقدة في الصف
         }
 
-
-        void FillDgv()
+        private void FillData()
         {
-            var headers = (from hed in db.Invoice_Header
-                           from cust in db.CustAndVends
-                               .Where(x => x.ID == hed.Customer_ID).DefaultIfEmpty()
-                           select new
-                           {
-                               ID = hed.ID,
-                               Nu = hed.Invoice_Nu,
-                               Date = hed.Invoice_Date,
-                               Name = cust.Name,
-                               Total = hed.Invoice_Total,
-                               Discount = hed.Invoice_Discount,
-                               Tax = hed.Invoice_Tax,
-                               Net = hed.Invoice_Net,
-                               Paid = hed.Invoice_Paid,
-                               Remain = hed.Invoice_remain,
-                               Type = hed.Invoice_Type,
-                               Note = hed.invoice_Note,
-                           }).ToList();
-
-            var details = (from d in db.Invoice_Det
-                           from p in db.products
-                               .Where(x => x.code == d.Item_Code).DefaultIfEmpty()
-                           select new
-                           {
-                               d.ID,
-                               p.productName,
-                               d.Item_Qty,
-                               d.Item_Price,
-                               d.total_Price,
-                               d.InvoiceID,
-                           }).ToList();
-
-            // ربط البيانات
-            data = headers.Select(h => 
-                         new dataType
-            {
-                ID = h.ID,
-                Nu = h.Nu,
-                Date = h.Date,
-                Name = h.Name,
-                Total= h.Total,
-                Discount = h.Discount,
-                Tax = h.Tax,
-                Net = h.Net,
-                Paid = h.Paid,
-                Remain = h.Remain,
-                Type = h.Type,
-                Note = h.Note,
-                Details = details.Where(d => d.InvoiceID == h.ID).Select(d => 
-                          new Details
-                {
-                    Item_Code = d.productName,
-                    Item_Qty = d.Item_Qty,
-                    Item_Price = d.Item_Price,
-                    total_Price = d.total_Price
-                }).ToList(),
-            }).ToList();
-
-            headers.Clear();
-            details.Clear();
+            // تهيئة البيانات
+            data = (from h in db.Invoice_Header
+                         from cust in db.CustAndVends
+                             .Where(x => x.ID == h.Customer_ID).DefaultIfEmpty()
+                         select new dataType
+                         {
+                             ID = h.ID,
+                             Nu = h.Invoice_Nu,
+                             Date = h.Invoice_Date,
+                             Name = cust.Name,
+                             Total = h.Invoice_Total,
+                             Discount = h.Invoice_Discount,
+                             Tax = h.Invoice_Tax,
+                             Net = h.Invoice_Net,
+                             Paid = h.Invoice_Paid,
+                             Remain = h.Invoice_remain,
+                             Type = h.Invoice_Type,
+                             Note = h.invoice_Note,
+                             Details = (from dt in db.Invoice_Det.Where(x => x.InvoiceID == h.ID)
+                                        from p in db.products.Where(x => x.code == dt.Item_Code).DefaultIfEmpty()
+                                        select new Details
+                                        {
+                                            Item_Code = p.productName,
+                                            Item_Qty = dt.Item_Qty,
+                                            Item_Price = dt.Item_Price,
+                                            total_Price = dt.total_Price
+                                        }).ToList()
+                         }).ToList();
         }
 
 
